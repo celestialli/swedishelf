@@ -1,0 +1,40 @@
+[build-system]
+requires = [
+    "setuptools",
+]
+build-backend = "setuptools.build_meta"
+[project]
+name = "swedishelf"
+version = "0.1.0"
+authors = [{name = "Anton(Shuqiao) Li", email = "real.celestialli@gmail.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+description = "A command line tool that helps you learn Swedish"
+keywords = ["swedish", "english", "linguistic", "language", "learn", "quiz", "exam"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Natural Language :: Swedish",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: General",
+    "Topic :: Text Processing :: Linguistic",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.7,<3.14"
+dependencies = [
+    "requests",
+    "playsound3 == 3.2.4",
+    "click >= 8.1.8",
+]
+[project.scripts]
+swedishelf = "swedishelf.main:main"
