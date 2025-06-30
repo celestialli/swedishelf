@@ -1,9 +1,11 @@
+import os
+
 import click
 
-from swedishelf.fileop import download_file
+from swedishelf.fileop import get_app_dir
 from swedishelf.sven import Sven
 
-DIC_URL = "https://cdn.jsdelivr.net/gh/celestialli/convert-dict@main/folkets_sv_en_public.json"
+DIC_FILENAME = "folkets_sv_en_public.json"
 
 
 @click.command()
@@ -31,13 +33,24 @@ DIC_URL = "https://cdn.jsdelivr.net/gh/celestialli/convert-dict@main/folkets_sv_
     help="Show version and exit.",
 )
 def main(dic, num, mute, choices, version):
-    """swedishelf - A command line tool that helps you learn swedish"""
+    """swedishelf - An interactive command-line tool for learning Swedish through quizzes and exercises."""
     if version:
-        print("swedishelf v0.1.0")
+        print("swedishelf v0.1.1")
         exit(0)
     # If -d or --dic option passed, will use specified dict.
     if dic is None:
-        dic = download_file(DIC_URL)
+        cwd_dic_path = os.path.join(os.getcwd(), DIC_FILENAME)
+        app_dir = get_app_dir()
+        app_dir_dic_path = os.path.join(app_dir, DIC_FILENAME)
+
+        if os.path.exists(os.path.join(os.getcwd(), DIC_FILENAME)):
+            dic = cwd_dic_path
+        elif os.path.exists(app_dir_dic_path):
+            dic = app_dir_dic_path
+        else:
+            print("Run failed, no dictionary file found.")
+            exit(1)
+        print("Using dictionary file:", dic)
 
     sven = Sven(dic)
     sven.play(num, mute, choices)
