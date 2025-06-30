@@ -4,7 +4,17 @@
 
 ### Linux
 
-First, install ffplay (part of the FFmpeg package). The following example uses Ubuntu:
+#### Download dictionary
+
+Download the JSON dictionary `folkets_sv_en_public.json` from [here](https://github.com/celestialli/convert-dict/releases).
+
+Store the file in one of the following locations:
+- **Global installation** (recommended): `/home/<YOUR_USERNAME>/.config/swedishelf/` - This makes the dictionary available system-wide for all your swedishelf sessions. (You may need to create the `.config` and `swedishelf` directories if they don't exist)
+- **Local installation**: Place the file in the directory where you plan to run `swedishelf` - The dictionary will only be available when running swedishelf from that specific directory.
+
+#### Install audio dependency
+
+Install ffplay (part of the FFmpeg package). The following example uses Ubuntu:
 
 ```bash
 sudo apt update
@@ -17,13 +27,25 @@ Verify that ffplay is installed correctly:
 ffplay -version
 ```
 
+#### Install swedishelf
+
 Install swedishelf:
 
 ```bash
 pip install swedishelf
 ```
 
+Enjoy!
+
 ### Windows
+
+#### Download dictionary
+
+Download the JSON dictionary `folkets_sv_en_public.json` from [here](https://github.com/celestialli/convert-dict/releases).
+
+Store the file in one of the following locations:
+- **Global installation** (recommended): `C:\Users\<YOUR_USERNAME>\AppData\Roaming\swedishelf\` - This makes the dictionary available system-wide for all your swedishelf sessions. (You may need to enable viewing of hidden folders to access `AppData`, and create the `swedishelf` directory if it doesn't exist)
+- **Local installation**: Place the file in the directory where you plan to run `swedishelf` - The dictionary will only be available when running swedishelf from that specific directory.
 
 #### Configure UTF-8 Support
 
@@ -41,6 +63,8 @@ After restarting your system, install swedishelf:
 ```bash
 pip install swedishelf
 ```
+
+Enjoy!
 
 ## Usage
 
@@ -67,16 +91,18 @@ This will start a session with 20 questions, using the default dictionary file.
 
 ### FAQs
 
-#### Q: Why does the program take a long time on first start?
-A: When you run swedishelf for the first time, it may take 10 seconds or more to start. This is because the program is downloading the dictionary file. This download only occurs on the first run.
+#### Q: In what order does swedishelf search for the dictionary file?
 
-You can download the JSON dictionary from [here](https://github.com/celestialli/convert-dict/releases/tag/v1.0.4488). Then run the program with
-```bash
-$ swedishelf -d <your_local_path_to_json_dictionary>
-```
+Swedishelf searches for the dictionary file in the following priority order:
+
+1. **Custom dictionary path** (specified with `-d` or `--dict` option)
+2. **Current working directory** (the directory where you run the `swedishelf` command)
+3. **System-wide user config directory** (varies by operating system):
+   - Linux: `/home/<YOUR_USERNAME>/.config/swedishelf/`
+   - Windows: `C:\Users\<YOUR_USERNAME>\AppData\Roaming\swedishelf\`
 
 #### Q: Why doesn't the program show the next question immediately after I have answered one?
-A: The audio of the question you just answered is playing, and swedishelf is downloading the audio for the next question at this time without blocking. The downloading duration depends on the network conditions. If you run the program with the `-m` or `--mute` option, this delay will not occur.
+A: The audio of the question you just answered is playing, and swedishelf is downloading the audio for the next question at this time without blocking. The download duration depends on the network conditions. If you run the program with the `-m` or `--mute` option, this delay will not occur.
 
 ## Contributing
 
@@ -84,4 +110,4 @@ If you'd like to contribute to swedishelf, please fork the repository and submit
 
 ## Licensing
 
-swedishelf is licensed under the MIT License. See the LICENSE file for more information.
+Swedishelf is licensed under the MIT License. See the LICENSE file for more information.

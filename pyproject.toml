@@ -5,12 +5,12 @@ requires = [
 build-backend = "setuptools.build_meta"
 [project]
 name = "swedishelf"
-version = "0.1.0"
+version = "0.1.1"
 authors = [{name = "Anton(Shuqiao) Li", email = "real.celestialli@gmail.com"}]
 license = {text = "MIT"}
 readme = "README.md"
-description = "A command line tool that helps you learn Swedish"
-keywords = ["swedish", "english", "linguistic", "language", "learn", "quiz", "exam"]
+description = "An interactive command-line tool for learning Swedish through quizzes and exercises. Features vocabulary practice and grammar drills to help English speakers master Swedish efficiently."
+keywords = ["swedish", "english", "swedish-learning", "language-learning", "cli-tool", "vocabulary-quiz", "grammar-practice", "interactive-learning", "education", "linguistics", "scandinavian-languages", "language", "learn", "quiz", "exam"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
